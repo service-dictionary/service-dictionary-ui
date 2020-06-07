@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-// import Source from './components/Source';
-import SourceListPage from './components/SourceListPage';
+import SourcesPage from './components/SourcesPage';
+import SourcePage from './components/SourcePage';
 
 function App() {
   return (
@@ -20,9 +20,11 @@ function App() {
         </nav>
 
         <Switch>
+          <Route path="/sources/:id" component={SourcePage} />
           <Route path="/sources">
-            <SourceListPage />
+            <SourcesPage />
           </Route>
+          />
           <Route path="/">
             <Home />
           </Route>
