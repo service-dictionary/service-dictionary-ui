@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Source from './Source';
+import Source from './sources/SourceForm';
 
 export default {
   component: Source,
