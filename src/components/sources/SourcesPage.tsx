@@ -19,8 +19,8 @@ const SourcesPage = () => {
 
   return (
     <>
-      <h2>Sources</h2>
-      <Table striped bordered hover variant="dark">
+      <h2>DataSources</h2>
+      <Table striped bordered hover variant="light">
         <thead>
           <tr>
             <th>#</th>
@@ -39,7 +39,7 @@ const SourcesPage = () => {
               </td>
               <td>{source.name}</td>
               <td>{source.description}</td>
-              <td>TBD</td>
+              <td>{source.source_type}</td>
             </tr>
           ))}
         </tbody>

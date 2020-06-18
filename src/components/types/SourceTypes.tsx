@@ -1,11 +1,11 @@
 export interface ISource {
   sourceid: number;
   name: string;
-  source_uuid: string;
   description: string;
-  is_deleted: boolean;
-  created: Date;
+  source_type: string;
   endpoint: string;
+  is_active: boolean;
+  created: Date;
 }
 
 export interface ISources {
