@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import SourcesList from './SourcesList';
 import { ISources } from '../types/SourceTypes';
+import { Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const SourcesPage = () => {
   const [sources, setSources] = useState<ISources>({ sources: [] });
@@ -19,7 +20,30 @@ const SourcesPage = () => {
   return (
     <>
       <h2>Sources</h2>
-      <SourcesList sources={sources.sources} />
+      <Table striped bordered hover variant="dark">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Desc</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sources.sources.map((source) => (
+            <tr>
+              <td>
+                <Link to={'/source/' + source.sourceid}>
+                  #{source.sourceid}
+                </Link>
+              </td>
+              <td>{source.name}</td>
+              <td>{source.description}</td>
+              <td>TBD</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </>
   );
 };

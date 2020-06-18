@@ -15,7 +15,7 @@ export default {
 };
 
 export const sourceData = {
-  id: 1,
+  sourceid: 1,
   name: 'Test',
   description: 'Test description',
   endpoint: 'service-endpoint',

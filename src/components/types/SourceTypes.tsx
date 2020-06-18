@@ -1,5 +1,5 @@
 export interface ISource {
-  id: number;
+  sourceid: number;
   name: string;
   source_uuid: string;
   description: string;
