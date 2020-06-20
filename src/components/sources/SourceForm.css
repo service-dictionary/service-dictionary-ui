@@ -1,0 +1,24 @@
+textarea {
+  width: 100%;
+}
+.field {
+  margin-left: 10px;
+}
+
+.field-text {
+  width: 400px;
+}
+
+.field-select {
+  width: 200px;
+}
+
+.field-desc {
+  width: 100%;
+  border: 10px solid blue;
+}
+
+.sourceForm {
+  width: 100%;
+  border: 10px solid red;
+}
