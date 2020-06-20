@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TextInput = (props: {
-  // onSubmit: ((event: React.FormEvent<HTMLFormElement>) => void) | undefined;
   onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
   id: string;
   name: string;
