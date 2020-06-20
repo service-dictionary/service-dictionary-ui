@@ -3,6 +3,7 @@ import { ISource } from '../types/SourceTypes';
 import '../sources/SourceForm.css';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
+import TextAreaInput from '../common/TextAreaInput';
 
 const SourceForm = (props: {
   onSubmit: ((event: React.FormEvent<HTMLFormElement>) => void) | undefined;
@@ -53,17 +54,13 @@ const SourceForm = (props: {
             value={props.source.endpoint}
             label="Endpoint"
           />
-          <div id="wrap">
-            <label className="textarea-label">Description:</label>
-            <div className="field-desc">
-              <textarea
-                name="description"
-                rows={5}
-                value={props.source.description}
-                onChange={props.onDescChange}
-              ></textarea>
-            </div>
-          </div>
+          <TextAreaInput
+            name="description"
+            rows={5}
+            label="Description:"
+            value={props.source.description}
+            onChange={props.onDescChange}
+          />
           {props.errors && (
             <div className="alert alert-danger">{props.errors}</div>
           )}
