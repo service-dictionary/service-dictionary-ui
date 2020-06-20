@@ -3,8 +3,8 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SourcesPage from './components/sources/SourcesPage';
 import ManageSourcePage from './components/sources/ManageSourcePage';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import MenuBar from './components/shared/MenuBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
             <SourcesPage />
           </Route>
           <Route path="/source/:sourceid" component={ManageSourcePage} />
+          <Route path="/source/" component={ManageSourcePage} />
           <Route path="/">
             <Home />
           </Route>
