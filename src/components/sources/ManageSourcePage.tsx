@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-// import { sourceData } from '../../stories/SourceForm.stories';
-// import { ISource } from '../types/SourceTypes';
 import SourceForm from './SourceForm';
 
 const ManageSourcePage = () => {
-  //eslint-disable-next-line
   const [source, setSource] = useState({
     sourceid: 0,
     name: '',
     description: '',
-    source_type_id: 1,
-    endpoint: '',
+    source_type_id: 0,
+    endpoint: 'tbd',
   });
 
-  function onChange() {
-    debugger;
+  function onChange(event: { target: { name: any; value: any } }) {
+    const { target } = event;
+    setSource({
+      ...source,
+      [target.name]: target.value,
+    });
   }
 
   function onSubmit() {
@@ -30,7 +31,8 @@ const ManageSourcePage = () => {
         source={source}
         onChange={onChange}
         onSubmit={onSubmit}
-        onTextChange={onSubmit}
+        onTextInputChange={onChange}
+        onDescChange={onChange}
         errors={error}
       />
     </>

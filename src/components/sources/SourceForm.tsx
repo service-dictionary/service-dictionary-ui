@@ -1,12 +1,16 @@
 import React from 'react';
 import { ISource } from '../types/SourceTypes';
 import '../sources/SourceForm.css';
+import TextInput from '../common/TextInput';
 
 const SourceForm = (props: {
   onSubmit: ((event: React.FormEvent<HTMLFormElement>) => void) | undefined;
   onChange: ((event: React.ChangeEvent<HTMLSelectElement>) => void) | undefined;
-  onTextChange:
+  onTextInputChange:
     | ((event: React.ChangeEvent<HTMLInputElement>) => void)
+    | undefined;
+  onDescChange:
+    | ((event: React.ChangeEvent<HTMLTextAreaElement>) => void)
     | undefined;
   source: ISource;
   errors: string;
@@ -15,17 +19,25 @@ const SourceForm = (props: {
     <div className="sourceForm">
       <form onSubmit={props.onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Source name:</label>
-          <div className="field field-text">
-            <input
+          {/* <label htmlFor="name">Source name:</label> */}
+          {/* <div className="field field-text"> */}
+          {/* <input
               id="name"
               type="text"
               name="name"
-              onChange={props.onTextChange}
+              onChange={props.onTextInputChange}
               value={props.source.name || ''}
               className="form-control"
-            ></input>
-          </div>
+            ></input> */}
+          <TextInput
+            id="name"
+            name="name"
+            onChange={props.onTextInputChange}
+            value={props.source.name || ''}
+            label="Name:"
+          />
+          {/* </div> */}
+
           <label htmlFor="source">Select type:</label>
           <div className="field field-select">
             <select
@@ -41,6 +53,13 @@ const SourceForm = (props: {
               <option value="3">SQL</option>
             </select>
           </div>
+          <TextInput
+            id="endpoint"
+            name="endpoint"
+            onChange={props.onTextInputChange}
+            value={props.source.endpoint}
+            label="Endpoint"
+          />
           <div id="wrap">
             <label className="textarea-label">Description:</label>
             <div className="field-desc">
@@ -48,6 +67,7 @@ const SourceForm = (props: {
                 name="description"
                 rows={5}
                 value={props.source.description}
+                onChange={props.onDescChange}
               ></textarea>
             </div>
           </div>

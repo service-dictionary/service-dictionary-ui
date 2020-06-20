@@ -20,7 +20,7 @@ const SourcesList = (sources: ISources) => {
         </thead>
         <tbody>
           {sources.sources.map((source: ISource) => (
-            <tr>
+            <tr key={source.sourceid}>
               <td>
                 <Link to={'/source/' + source.sourceid}>{source.sourceid}</Link>
               </td>
