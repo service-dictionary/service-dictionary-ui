@@ -1,16 +1,18 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 import SourcesPage from './components/sources/SourcesPage';
 import ManageSourcePage from './components/sources/ManageSourcePage';
 import MenuBar from './components/shared/MenuBar';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <Router>
-      <div>
+      <header>
         <MenuBar />
+      </header>
+      <Container maxWidth="lg" component="main">
         <Switch>
           <Route path="/sources">
             <SourcesPage />
@@ -21,7 +23,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
-      </div>
+      </Container>
     </Router>
   );
 }
