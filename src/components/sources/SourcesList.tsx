@@ -1,38 +1,39 @@
 import React from 'react';
 import { ISources, ISource } from '../types/SourceTypes';
-import { Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 
-const SourcesList = (sources: ISources) => {
-  return (
-    <>
-      <Link className="btn btn-primary" to="/source">
-        Add Source
-      </Link>
-      <Table striped bordered hover variant="light">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Desc</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sources.sources.map((source: ISource) => (
-            <tr key={source.sourceid}>
-              <td>
-                <Link to={'/source/' + source.sourceid}>{source.sourceid}</Link>
-              </td>
-              <td>{source.name}</td>
-              <td>{source.description}</td>
-              <td>{source.source_type_id}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </>
-  );
-};
+const SourcesList = (sources: ISources) => (
+  <>
+    <Button component={Link} to="/source" variant="contained" color="primary">Add Source</Button>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell>#</TableCell>
+          <TableCell>Name</TableCell>
+          <TableCell>Desc</TableCell>
+          <TableCell>Type</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {sources.sources.map((source: ISource) => (
+          <TableRow key={source.sourceid}>
+            <TableCell>
+              <Link to={'/source/' + source.sourceid}>{source.sourceid}</Link>
+            </TableCell>
+            <TableCell>{source.name}</TableCell>
+            <TableCell>{source.description}</TableCell>
+            <TableCell>{source.source_type_id}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </>
+);
 
 export default SourcesList;
