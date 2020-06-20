@@ -15,10 +15,10 @@ textarea {
 
 .field-desc {
   width: 100%;
-  border: 10px solid blue;
+  border: 10px;
 }
 
 .sourceForm {
   width: 100%;
-  border: 10px solid red;
+  border: 10px;
 }

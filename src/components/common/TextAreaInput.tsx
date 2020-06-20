@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = (props: {
-  onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
-  id: string;
+const TextAreaInput = (props: {
+  onChange:
+    | ((event: React.ChangeEvent<HTMLTextAreaElement>) => void)
+    | undefined;
   name: string;
   label: string;
   value: string;
   error: string;
+  rows: number | 5;
 }) => {
   let wrapperClass = 'form-group';
   if (props.error.length > 0) {
@@ -16,33 +18,31 @@ const TextInput = (props: {
 
   return (
     <div className={wrapperClass}>
-      <label htmlFor={props.id}>{props.label}</label>
-      <div className="field">
-        <input
-          id={props.id}
-          type="text"
-          onChange={props.onChange}
-          name={props.name}
-          className="form-control"
+      <label htmlFor={props.name}>{props.label}</label>
+      <div className="field-desc">
+        <textarea
+          name="description"
+          rows={props.rows}
           value={props.value}
-        />
+          onChange={props.onChange}
+        ></textarea>
       </div>
       {props.error && <div className="alert alert-danger">{props.error}</div>}
     </div>
   );
 };
 
-TextInput.propTypes = {
-  id: PropTypes.string.isRequired,
+TextAreaInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  rows: PropTypes.number,
   value: PropTypes.string,
   error: PropTypes.string,
 };
 
-TextInput.defaultProps = {
+TextAreaInput.defaultProps = {
   error: '',
 };
 
-export default TextInput;
+export default TextAreaInput;

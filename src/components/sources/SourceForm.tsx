@@ -2,10 +2,14 @@ import React from 'react';
 import { ISource } from '../types/SourceTypes';
 import '../sources/SourceForm.css';
 import TextInput from '../common/TextInput';
+import SelectInput from '../common/SelectInput';
+import TextAreaInput from '../common/TextAreaInput';
 
 const SourceForm = (props: {
   onSubmit: ((event: React.FormEvent<HTMLFormElement>) => void) | undefined;
-  onChange: ((event: React.ChangeEvent<HTMLSelectElement>) => void) | undefined;
+  onSelectChange:
+    | ((event: React.ChangeEvent<HTMLSelectElement>) => void)
+    | undefined;
   onTextInputChange:
     | ((event: React.ChangeEvent<HTMLInputElement>) => void)
     | undefined;
@@ -19,16 +23,6 @@ const SourceForm = (props: {
     <div className="sourceForm">
       <form onSubmit={props.onSubmit}>
         <div className="form-group">
-          {/* <label htmlFor="name">Source name:</label> */}
-          {/* <div className="field field-text"> */}
-          {/* <input
-              id="name"
-              type="text"
-              name="name"
-              onChange={props.onTextInputChange}
-              value={props.source.name || ''}
-              className="form-control"
-            ></input> */}
           <TextInput
             id="name"
             name="name"
@@ -36,23 +30,23 @@ const SourceForm = (props: {
             value={props.source.name || ''}
             label="Name:"
           />
-          {/* </div> */}
-
-          <label htmlFor="source">Select type:</label>
-          <div className="field field-select">
-            <select
-              id="source_type"
-              name="source_type_id"
-              onChange={props.onChange}
-              value={props.source.source_type_id || ''}
-              className="form-control"
-            >
-              <option value="" />
-              <option value="1">JSON</option>
-              <option value="2">CSV</option>
-              <option value="3">SQL</option>
-            </select>
-          </div>
+          <SelectInput
+            id="source_type"
+            name="source_type_id"
+            label="Select type:"
+            onChange={props.onSelectChange}
+            defaultOption="Select type"
+            value={props.source.source_type_id || ''}
+            options={[
+              { value: 1, text: 'JSON' },
+              { value: 2, text: 'SQL' },
+              { value: 3, text: 'CSV' },
+            ]}
+            // options={products.map(product => ({
+            //   value: product.ticker,
+            //   text: product.name
+            // }))}
+          />
           <TextInput
             id="endpoint"
             name="endpoint"
@@ -60,17 +54,13 @@ const SourceForm = (props: {
             value={props.source.endpoint}
             label="Endpoint"
           />
-          <div id="wrap">
-            <label className="textarea-label">Description:</label>
-            <div className="field-desc">
-              <textarea
-                name="description"
-                rows={5}
-                value={props.source.description}
-                onChange={props.onDescChange}
-              ></textarea>
-            </div>
-          </div>
+          <TextAreaInput
+            name="description"
+            rows={5}
+            label="Description:"
+            value={props.source.description}
+            onChange={props.onDescChange}
+          />
           {props.errors && (
             <div className="alert alert-danger">{props.errors}</div>
           )}

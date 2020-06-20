@@ -29,7 +29,7 @@ const ManageSourcePage = () => {
       <h2>Manage Source</h2>
       <SourceForm
         source={source}
-        onChange={onChange}
+        onSelectChange={onChange}
         onSubmit={onSubmit}
         onTextInputChange={onChange}
         onDescChange={onChange}
