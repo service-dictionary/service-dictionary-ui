@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -36,32 +36,37 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const MenuBar = () => {
+interface PropTypes {
+  open: boolean;
+  openMenu: () => void;
+  closeMenu: () => void;
+}
+
+const MenuBar = ({ open, openMenu, closeMenu }: PropTypes) => {
   const classes = useStyles();
-  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" className={classes.hamburger} onClick={() => setShowMenu(true)}>
+        <IconButton edge="start" className={classes.hamburger} onClick={openMenu}>
           <MenuIcon />
         </IconButton>
         <Link to="/" className={classes.title}>
           <Typography variant="h5" component="h1">RabbitHole</Typography>
         </Link>
       </Toolbar>
-      <Drawer anchor="left" open={showMenu} onClose={() => setShowMenu(false)}>
+      <Drawer anchor="left" open={open} onClose={closeMenu}>
         <List component="nav" className={classes.menu}>
-          <ListItem component={Link} to="/" className={classes.listItem} onClick={() => setShowMenu(false)}>
+          <ListItem component={Link} to="/" className={classes.listItem} onClick={closeMenu}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem component={Link} to="/sources" className={classes.listItem} onClick={() => setShowMenu(false)}>
+          <ListItem component={Link} to="/sources" className={classes.listItem} onClick={closeMenu}>
             <ListItemText primary="DataSources" />
           </ListItem>
-          <ListItem component={Link} to="/datasets" className={classes.listItem} onClick={() => setShowMenu(false)}>
+          <ListItem component={Link} to="/datasets" className={classes.listItem} onClick={closeMenu}>
             <ListItemText primary="DataSets" />
           </ListItem>
         </List>
