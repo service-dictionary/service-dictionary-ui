@@ -5,7 +5,7 @@ import SourcesList from './SourcesList';
 const SourcesPage = () => {
   const [sources, setSources] = useState<ISources>({ sources: [] });
 
-  const url = 'http://localhost:5000/api/sources';
+  const url = process.env.REACT_APP_API_URL + "/api/sources";
 
   useEffect(() => {
     if (url) {
